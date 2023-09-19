@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@rocketseat/eslint-config": "^2.1.0",
+    "dotenv": "^16.3.1",
     "eslint": "^8.49.0",
     "fastify": "^4.23.2",
     "knex": "^2.5.1",
