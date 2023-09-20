@@ -3,7 +3,7 @@
 
 #RF
 
-- [ ] O usuário deve poder criar uma nova transação.
+- [x] O usuário deve poder criar uma nova transação.
 - [ ] O usuário deve poder obter um resuno da sua conta.
 - [ ] O usuário deve poder listar todas as transações que já ocorreram.
 - [ ] O usuário deve poder visualizar uma transação única.
