@@ -1,6 +1,6 @@
 import { FastifyInstance } from 'fastify'
 import { knex } from '../database'
-import { string, z } from 'zod'
+import { z } from 'zod'
 import { randomUUID } from 'node:crypto'
 
 export async function transationsRoutes(app: FastifyInstance) {
@@ -20,6 +20,14 @@ export async function transationsRoutes(app: FastifyInstance) {
     const transaction = await knex('transactions').where('id', id).first()
 
     return { transaction }
+  })
+
+  app.get('/summary', async () => {
+    const summary = await knex('transactions')
+      .sum('amount', { as: 'amount' })
+      .first()
+
+    return { summary }
   })
 
   app.post('/', async (request, reply) => {
