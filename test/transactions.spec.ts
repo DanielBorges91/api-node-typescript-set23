@@ -19,5 +19,35 @@ describe('Transactions routes', () => {
     })
 
     expect(response.statusCode).toEqual(201)
+
+    // console.log(response.headers)
+    // console.log(response.get('set-cookie'))
+  })
+
+  it('should be able to list all transactions', async () => {
+    const createTransactionResponse = await request(app.server)
+      .post('/transactions')
+      .send({
+        title: 'New transaction',
+        amount: 5000,
+        type: 'credit',
+      })
+
+    const cookies = createTransactionResponse.get('Set-Cookie')
+    // console.log(cookies)
+
+    const listTransactionsResponse = await request(app.server)
+      .get('/transactions')
+      .set('Cookie', cookies)
+      .expect(200)
+
+    // console.log(listTransactionsResponse.body)
+
+    expect(listTransactionsResponse.body.transactions).toEqual([
+      expect.objectContaining({
+        title: 'New transaction',
+        amount: 5000,
+      }),
+    ])
   })
 })
